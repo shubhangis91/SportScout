@@ -17,6 +17,11 @@ if ($res = mysqli_query($db, $sql)) {
     	echo "<center>"; 
     	echo "Your Profile";
         echo "<table>"; 
+
+        session_start();
+        $_SESSION["playersUsername"] = $playersUsername;
+
+
        while ($row = mysqli_fetch_array($res)) { 
             echo "<tr>"; 
             
@@ -80,6 +85,16 @@ if ($res = mysqli_query($db, $sql)) {
             //echo "</tr>"; 
         } 
         echo "</table>"; 
+
+		echo "<a href='playersSportInterest.php' target='_blank'>Select Interest</a>";
+        
+      	
+
+		}
+
+	}
+     
+
         echo "</center>";
         //mysqli_free_res($res); 
     } 
@@ -90,7 +105,7 @@ if ($res = mysqli_query($db, $sql)) {
         </script>"; 
     }     
 
-}
 
-}
+
+
 ?>
