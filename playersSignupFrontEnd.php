@@ -42,8 +42,12 @@ function validateForm() {
     <br/>
     Address:<input type="text" placeholder="10th St, Fountain Park" name="playersAddress"/>
     <br/>
-    City:<input type="text" placeholder="Bloomington" name="playersCity" required />
-    <br/>
+    City:   <select name="playersCity" required>
+                <option value='Bloomington'>Bloomington</option>
+                <option value='cricket'>Indianapolis</option>
+            </select>
+
+    <br>
     Contact:<input type="text" placeholder="2245507895" name="playersContact"/>
     <br/>
     Profile pic:
