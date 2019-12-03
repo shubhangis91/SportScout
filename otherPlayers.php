@@ -27,6 +27,15 @@
         
         </center>
 
+
+        <script type='text/JavaScript'>  
+        function bookVenue()
+        {
+            alert()
+        } 
+        </script>; 
+
+
         <?php
 
 
@@ -124,6 +133,127 @@
 
 	}
      
+
+// Displaying Trainers
+
+    $sql="SELECT *  FROM trainersignup natural join 
+    trainersporthobbies WHERE trainerCity='$City' and trainerSports='$Sports'";
+
+        
+    if ($res = mysqli_query($db, $sql)) { 
+    
+    if (mysqli_num_rows($res) > 0) { 
+        echo "<center>"; 
+        echo "Trainers Available";
+         
+
+
+       while ($row = mysqli_fetch_array($res)) { 
+            
+            echo "<table>";
+
+            echo "<tr>"; 
+            
+            echo "<td rowspan='9'> <img src=images/".$row['image'].
+            " alt='No Profile Photo' height='300px' width='250px'/> </td>";
+            
+            echo "</tr>";
+
+            echo "<tr>";
+
+            echo "<td>Username      ".$row['trainerUsername']."</td>";
+
+            echo "</tr>";
+
+            echo "<tr>";
+
+            echo "<td>Name      ".$row['trainerName']."</td>"; 
+
+            echo "</tr>";
+
+             echo "<tr>";
+
+            echo "<td>Age      ".$row['trainerAge']."</td>";
+
+            echo "</tr>";
+
+            echo "<tr>";
+
+            echo "<td>Gender      ".$row['trainerGender']."</td>"; 
+
+            echo "</tr>";
+
+             echo "<tr>";
+
+            echo "<td>Bio      ".$row['trainerBio']."</td>";
+
+            echo "</tr>";
+
+            echo "<tr>";
+
+            echo "<td>Address      ".$row['trainerAddress']."</td>"; 
+
+            echo "</tr>";
+
+
+            echo "<tr>";
+
+            echo "<td>City      ".$row['trainerCity']."</td>"; 
+
+            echo "</tr>";
+
+            echo "<tr>";
+
+            echo "<td>Contact      ".$row['trainerContact']."</td>"; 
+
+            echo "</tr>";
+
+            echo "</table>";
+
+            echo "<br><br><br>";    
+            //echo "<td>Name".$row['Lastname']."</td>"; 
+            //echo "<td>".$row['Age']."</td>"; 
+            //echo "</tr>"; 
+        } 
+         
+        
+
+        }
+
+    }
+     
+
+    $sql="SELECT * From manager Natural Join venues Natural Join placebooking";
+
+        
+    if ($res = mysqli_query($db, $sql)) { 
+    
+    if (mysqli_num_rows($res) > 0) { 
+        echo "<center>"; 
+        echo "<br> <br>Places Available<br>";
+         
+
+       echo "<select>";
+       while ($row = mysqli_fetch_array($res)) { 
+            echo "<option value=".$row['PlaceName'].">".$row['PlaceName'].$row['ManagerUsername']."<br>
+            </option>";
+             
+        }
+
+        echo "</select>";
+        echo "Book: <button name='book'  onclick='bookVenue()'>Book this Place</button>";
+  
+        
+
+         
+        
+
+        }
+
+    }
+
+
+
 
         echo "</center>";
         //mysqli_free_res($res); 

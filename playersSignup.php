@@ -8,7 +8,7 @@
   if (isset($_POST['upload'])) {
   	// Get image name
 
-  	$image = $_FILES['playersPhoto']['name'];
+  	$image = $_POST['playersUsername'].$_FILES['playersPhoto']['name'];
   	
     // Get text    
 
@@ -70,6 +70,10 @@
   	}else{
   		$msg = "Failed to upload image";
   	}
+
+    
+
+
   } 
     
 

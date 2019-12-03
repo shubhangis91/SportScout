@@ -8,12 +8,12 @@ if (isset($_POST['trainerLogin'])) {
     
     $trainerPassword=$_POST['trainerPassword'];
 
-    $sql="SELECT * FROM trainersignup";
+    $sql="SELECT * FROM trainersignup where trainerUsername='$trainerUsername' and trainerPassword='$trainerPassword' ";
 
  
 if ($res = mysqli_query($db, $sql)) { 
     
-    echo "run";
+    //echo "run";
     if (mysqli_num_rows($res) > 0) { 
     	echo "<center>"; 
     	echo "Your Profile";
@@ -87,7 +87,7 @@ if ($res = mysqli_query($db, $sql)) {
         } 
         echo "</table>"; 
 
-		echo "<a href='trainerSportInterest.php' target='_blank'>Select Interest</a>";
+		echo "<a href='trainerSportInterest.php' target='_blank'>Select Sports for coaching</a>";
 		echo "<br>";
 		echo "<a href='othertrainer.php' target='_blank'>Find nearby trainer</a>";
 		echo "<br>";
@@ -101,8 +101,32 @@ if ($res = mysqli_query($db, $sql)) {
 	}
      
 
+        $sportssql="SELECT trainerSports FROM trainersignup natural join trainersporthobbies where trainerUsername='$trainerUsername'";
+
+    if ($res = mysqli_query($db, $sportssql)) { 
+    
+    //echo "run";
+    if (mysqli_num_rows($res) > 0) { 
+        echo "<center>"; 
+        echo "Your areas of sport for teaching \n";
+        echo "<table>"; 
+
+
+       while ($row = mysqli_fetch_array($res)) { 
+            echo "<tr>"; 
+            
+            echo "<td>Sport    ".$row['trainerSports']."</td>";
+
+            echo "</tr>";
+
+        echo "</table";
+
         echo "</center>";
         //mysqli_free_res($res); 
+    }
+
+    }
+
     } 
     else { 
           echo "<script>
@@ -112,6 +136,6 @@ if ($res = mysqli_query($db, $sql)) {
     }     
 
 
-
+}
 
 ?>

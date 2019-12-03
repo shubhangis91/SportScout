@@ -1,3 +1,4 @@
+
 <?php
 
 if (isset($_POST['playerLogin'])) {
@@ -86,7 +87,7 @@ if ($res = mysqli_query($db, $sql)) {
         } 
         echo "</table>"; 
 
-		echo "<a href='playersSportInterest.php' target='_blank'>Select Interest</a>";
+		
         
       	
 
@@ -94,9 +95,77 @@ if ($res = mysqli_query($db, $sql)) {
 
 	}
      
+     
+$sportssql="SELECT playersSport FROM playerssignup 
+    natural join sporthobbies where playersUsername='$playersUsername'";
+
+    if ($res = mysqli_query($db, $sportssql)) { 
+    
+    //echo "run";
+    if (mysqli_num_rows($res) > 0) { 
+        echo "<center>"; 
+        echo "Your Interests \n";
+        echo "<table>"; 
+
+
+       while ($row = mysqli_fetch_array($res)) { 
+            echo "<tr>"; 
+            
+            echo "<td>Sport    ".$row['playersSport']."</td>";
+
+            echo "</tr>";
+
+        echo "</table>";
+
+        
+        //mysqli_free_res($res); 
+    }
+
+    }
+}
+
+
+$looking_for_trainer="SELECT playersSport FROM playerssignup 
+    natural join playerslookingtrainer where playersUsername='$playersUsername'";
+
+    if ($res = mysqli_query($db, $looking_for_trainer)) { 
+    
+    //echo "run";
+    if (mysqli_num_rows($res) > 0) { 
+        echo "<center>"; 
+        echo "You Want Coach For following Sports\n";
+        echo "<table>"; 
+
+
+       while ($row = mysqli_fetch_array($res)) { 
+            echo "<tr>"; 
+            
+            echo "<td>Sport    ".$row['playersSport']."</td>";
+
+            echo "</tr>";
+
+        echo "</table>";
+
+        
+        //mysqli_free_res($res); 
+    }
+
+    }
+}
+
+
+
+    echo "<br>";
+    echo "<a href='playersSportInterest.php' target='_blank'>Select Interest</a>";
+        echo "<br>";
+        echo "<a href='otherPlayers.php' target='_blank'>Find nearby Players Trainer and Grounds</a>";
+        echo "<br>";
+        echo "<a href='player_lookingTrainers.php' target='_blank'>Announcement for Trainer</a>";
+        
 
         echo "</center>";
         //mysqli_free_res($res); 
+    
     } 
     else { 
           echo "<script>
